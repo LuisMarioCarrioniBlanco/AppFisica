@@ -23,36 +23,20 @@ public class Velocidad extends javax.swing.JPanel {
 
         jTextField1.setEditable(false);
         
-        agregarKeyListeners();
-        
-    }
-    
-    private void agregarKeyListeners() {
-        dis.addKeyListener(new KeyListener() {
+        KeyListener keyListener = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
-
             @Override
             public void keyPressed(KeyEvent e) {}
-
             @Override
             public void keyReleased(KeyEvent e) {
                 calcularVelocidad();
             }
-        });
+        };
         
-        tiem.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyPressed(KeyEvent e) {}
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                calcularVelocidad();
-            }
-        });
+        dis.addKeyListener(keyListener);
+        tiem.addKeyListener(keyListener);
+        
     }
     
     private void calcularVelocidad() {

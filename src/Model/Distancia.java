@@ -4,6 +4,11 @@
  */
 package Model;
 
+import Controller.Calculos;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
@@ -15,6 +20,46 @@ public class Distancia extends javax.swing.JPanel {
      */
     public Distancia() {
         initComponents();
+        
+        txtResultado.setEditable(false);
+        
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+            @Override
+            public void keyPressed(KeyEvent e) {}
+            @Override
+            public void keyReleased(KeyEvent e) {
+                calcularDistancia();
+            }
+        };
+        
+        txtVelocidad.addKeyListener(keyListener);
+        txtTiempo.addKeyListener(keyListener);
+    }
+    
+    private void calcularDistancia() {
+        try {
+            if (!txtVelocidad.getText().isEmpty() && !txtTiempo.getText().isEmpty()) {
+                double velocidad = Double.parseDouble(txtVelocidad.getText());
+                double tiempo = Double.parseDouble(txtTiempo.getText());
+                
+
+                double distancia = Calculos.calcularDistancia(velocidad, tiempo);
+                
+                txtResultado.setText(String.format("%.2f", distancia));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor, ingrese valores numéricos válidos.", 
+                "Error de formato", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -29,10 +74,10 @@ public class Distancia extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        vel = new javax.swing.JTextField();
-        tiem = new javax.swing.JTextField();
+        txtVelocidad = new javax.swing.JTextField();
+        txtTiempo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtResultado = new javax.swing.JTextField();
 
         jLabel1.setText("Velocidad:");
 
@@ -52,15 +97,15 @@ public class Distancia extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(vel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(tiem, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
@@ -70,15 +115,15 @@ public class Distancia extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(vel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -100,8 +145,8 @@ public class Distancia extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField tiem;
-    private javax.swing.JTextField vel;
+    private javax.swing.JTextField txtResultado;
+    private javax.swing.JTextField txtTiempo;
+    private javax.swing.JTextField txtVelocidad;
     // End of variables declaration//GEN-END:variables
 }

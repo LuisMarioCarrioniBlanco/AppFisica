@@ -23,35 +23,19 @@ public class Tiempo extends javax.swing.JPanel {
         
         txtResultado.setEditable(false);
         
-        agregarKeyListeners();
-    }
-    
-    private void agregarKeyListeners() {
-        txtDistancia.addKeyListener(new KeyListener() {
+        KeyListener keyListener = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {}
-
             @Override
             public void keyPressed(KeyEvent e) {}
-
             @Override
             public void keyReleased(KeyEvent e) {
                 calcularTiempo();
             }
-        });
+        };
         
-        txtVelocidad.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyPressed(KeyEvent e) {}
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                calcularTiempo();
-            }
-        });
+        txtDistancia.addKeyListener(keyListener);
+        txtVelocidad.addKeyListener(keyListener);
     }
 
     private void calcularTiempo() {

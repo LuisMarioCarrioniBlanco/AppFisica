@@ -4,6 +4,11 @@
  */
 package Model;
 
+import Controller.Calculos;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
@@ -15,6 +20,48 @@ public class VelocidadInicial extends javax.swing.JPanel {
      */
     public VelocidadInicial() {
         initComponents();
+        
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+            @Override
+            public void keyPressed(KeyEvent e) {}
+            @Override
+            public void keyReleased(KeyEvent e) {
+                calcularVelocidadInicial();
+            }
+        };
+        
+        txtVelocidadFinal.addKeyListener(keyListener);
+        txtTiempo.addKeyListener(keyListener);
+        txtAceleracion.addKeyListener(keyListener);
+    }
+    
+    private void calcularVelocidadInicial() {
+        try {
+            if (!txtVelocidadFinal.getText().isEmpty() && 
+                !txtTiempo.getText().isEmpty() && 
+                !txtAceleracion.getText().isEmpty()) {
+                
+                double velocidadFinal = Double.parseDouble(txtVelocidadFinal.getText());
+                double tiempo = Double.parseDouble(txtTiempo.getText());
+                double aceleracion = Double.parseDouble(txtAceleracion.getText());
+                
+                double velocidadInicial = Calculos.calcularVelocidadInicial(velocidadFinal, aceleracion, tiempo);
+                
+                txtResultado.setText(String.format("%.2f", velocidadInicial));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor, ingrese valores numéricos válidos.", 
+                "Error de formato", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -29,11 +76,11 @@ public class VelocidadInicial extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtVelocidadFinal = new javax.swing.JTextField();
+        txtAceleracion = new javax.swing.JTextField();
+        txtTiempo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtResultado = new javax.swing.JTextField();
 
         jLabel1.setText("Velocidad Final:");
 
@@ -57,13 +104,13 @@ public class VelocidadInicial extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)))
+                            .addComponent(txtVelocidadFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(txtAceleracion)
+                            .addComponent(txtTiempo)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
@@ -73,19 +120,19 @@ public class VelocidadInicial extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVelocidadFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAceleracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -96,9 +143,9 @@ public class VelocidadInicial extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtAceleracion;
+    private javax.swing.JTextField txtResultado;
+    private javax.swing.JTextField txtTiempo;
+    private javax.swing.JTextField txtVelocidadFinal;
     // End of variables declaration//GEN-END:variables
 }
