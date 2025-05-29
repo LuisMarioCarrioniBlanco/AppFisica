@@ -4,6 +4,11 @@
  */
 package Model;
 
+import Controller.Calculos;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
@@ -15,6 +20,62 @@ public class Velocidad extends javax.swing.JPanel {
      */
     public Velocidad() {
         initComponents();
+
+        jTextField1.setEditable(false);
+        
+        agregarKeyListeners();
+        
+    }
+    
+    private void agregarKeyListeners() {
+        dis.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                calcularVelocidad();
+            }
+        });
+        
+        tiem.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                calcularVelocidad();
+            }
+        });
+    }
+    
+    private void calcularVelocidad() {
+        try {
+            if (!dis.getText().isEmpty() && !tiem.getText().isEmpty()) {
+                double distancia = Double.parseDouble(dis.getText());
+                double tiempo = Double.parseDouble(tiem.getText());
+                
+                double velocidad = Calculos.calcularVelocidad(distancia, tiempo);
+                
+                jTextField1.setText(String.format("%.2f", velocidad));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor, ingrese valores numéricos válidos.", 
+                "Error de formato", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (ArithmeticException e) {
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error de cálculo", 
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -55,12 +116,12 @@ public class Velocidad extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tiem)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(tiem))))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

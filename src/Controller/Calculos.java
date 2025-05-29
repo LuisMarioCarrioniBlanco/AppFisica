@@ -47,5 +47,73 @@ public class Calculos {
     return r;
    }
    
+   public static double calcularVelocidad(double distancia, double tiempo) throws ArithmeticException {
+        if (tiempo == 0) {
+            throw new ArithmeticException("El tiempo no puede ser cero");
+        }
+        return distancia / tiempo;
+    }
+
+    public static double calcularDistancia(double velocidad, double tiempo) {
+        return velocidad * tiempo;
+    }
+    
+
+    public static double calcularTiempo(double distancia, double velocidad) throws ArithmeticException {
+        if (velocidad == 0) {
+            throw new ArithmeticException("La velocidad no puede ser cero");
+        }
+        return distancia / velocidad;
+    }
+
+    public static double calcularAceleracion(double velocidadFinal, double velocidadInicial, double tiempo) 
+            throws ArithmeticException {
+        if (tiempo == 0) {
+            throw new ArithmeticException("El tiempo no puede ser cero");
+        }
+        return (velocidadFinal - velocidadInicial) / tiempo;
+    }
+    
+    public static double calcularVelocidadFinal(double velocidadInicial, double aceleracion, double tiempo) {
+        return velocidadInicial + (aceleracion * tiempo);
+    }
+    
+    public static double calcularVelocidadInicial(double velocidadFinal, double aceleracion, double tiempo) {
+        return velocidadFinal - (aceleracion * tiempo);
+    }
+    
+    public static double calcularDistanciaAcelerada(double velocidadInicial, double tiempo, double aceleracion) {
+        return (velocidadInicial * tiempo) + (0.5 * aceleracion * Math.pow(tiempo, 2));
+    }
+    
+    public static double calcularTiempoAcelerado(double velocidadFinal, double velocidadInicial, double aceleracion) 
+            throws ArithmeticException {
+        if (aceleracion == 0) {
+            throw new ArithmeticException("La aceleración no puede ser cero");
+        }
+        return (velocidadFinal - velocidadInicial) / aceleracion;
+    }
+    
+    /**
+     * Cálculos para Leyes de Newton
+     */
+    
+    public static double calcularFuerza(double masa, double aceleracion) {
+        return masa * aceleracion;
+    }
+    
+    public static double calcularAceleracionDesdeF(double fuerza, double masa) throws ArithmeticException {
+        if (masa == 0) {
+            throw new ArithmeticException("La masa no puede ser cero");
+        }
+        return fuerza / masa;
+    }
+    
+    public static double calcularMasa(double fuerza, double aceleracion) throws ArithmeticException {
+        if (aceleracion == 0) {
+            throw new ArithmeticException("La aceleración no puede ser cero");
+        }
+        return fuerza / aceleracion;
+    }
    
 }
