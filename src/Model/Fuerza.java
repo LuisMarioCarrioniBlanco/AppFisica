@@ -4,6 +4,11 @@
  */
 package Model;
 
+import Controller.Calculos;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LENOVO
@@ -15,6 +20,43 @@ public class Fuerza extends javax.swing.JPanel {
      */
     public Fuerza() {
         initComponents();
+        
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+            @Override
+            public void keyPressed(KeyEvent e) {}
+            @Override
+            public void keyReleased(KeyEvent e) {
+                calcularFuerza();
+            }
+        };
+        
+        txtMasa.addKeyListener(keyListener);
+        txtAceleracion.addKeyListener(keyListener);
+    }
+    
+    private void calcularFuerza() {
+        try {
+            if (!txtMasa.getText().isEmpty() && !txtAceleracion.getText().isEmpty()) {
+                double masa = Double.parseDouble(txtMasa.getText());
+                double aceleracion = Double.parseDouble(txtAceleracion.getText());
+                
+                double fuerza = Calculos.calcularFuerza(masa, aceleracion);
+                
+                txtResultado.setText(String.format("%.2f", fuerza));
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor, ingrese valores numéricos válidos.", 
+                "Error de formato", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -30,10 +72,14 @@ public class Fuerza extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtMasa = new javax.swing.JTextField();
         txtAceleracion = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtResultado = new javax.swing.JTextField();
 
         jLabel1.setText("Masa:");
 
         jLabel2.setText("Aceleracion:");
+
+        jLabel4.setText("Resultado:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -41,16 +87,21 @@ public class Fuerza extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAceleracion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
-                        .addComponent(txtMasa)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtAceleracion))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(45, 45, 45)
+                            .addComponent(txtMasa))))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +114,11 @@ public class Fuerza extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtAceleracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -71,7 +126,9 @@ public class Fuerza extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtAceleracion;
     private javax.swing.JTextField txtMasa;
+    private javax.swing.JTextField txtResultado;
     // End of variables declaration//GEN-END:variables
 }
