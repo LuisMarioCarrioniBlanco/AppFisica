@@ -5,6 +5,7 @@
 package Model;
 
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 
 /**
  *
@@ -51,6 +52,7 @@ public class Mrua extends javax.swing.JPanel {
             }
         });
 
+        btna.setBackground(new java.awt.Color(51, 204, 255));
         btna.setText("Aceleracion");
         btna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +60,7 @@ public class Mrua extends javax.swing.JPanel {
             }
         });
 
+        btnvf.setBackground(new java.awt.Color(102, 255, 102));
         btnvf.setText("Velocidad Final");
         btnvf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -5,6 +5,7 @@
 package Model;
 
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Mru extends javax.swing.JPanel {
     public Mru() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,33 +135,33 @@ public class Mru extends javax.swing.JPanel {
 
     private void btndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndActionPerformed
         Distancia p = new Distancia();
-        p.setSize(955,460);
-        p.setLocation(0,0);
-        
+        p.setSize(955, 460);
+        p.setLocation(0, 0);
+
         pmru.removeAll();
-        pmru.add(p,BorderLayout.CENTER);
+        pmru.add(p, BorderLayout.CENTER);
         pmru.revalidate();
         pmru.repaint();
     }//GEN-LAST:event_btndActionPerformed
 
     private void btnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvActionPerformed
         Velocidad p = new Velocidad();
-        p.setSize(955,460);
-        p.setLocation(0,0);
-        
+        p.setSize(955, 460);
+        p.setLocation(0, 0);
+
         pmru.removeAll();
-        pmru.add(p,BorderLayout.CENTER);
+        pmru.add(p, BorderLayout.CENTER);
         pmru.revalidate();
         pmru.repaint();
     }//GEN-LAST:event_btnvActionPerformed
 
     private void btntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntActionPerformed
         Tiempo p = new Tiempo();
-        p.setSize(955,460);
-        p.setLocation(0,0);
-        
+        p.setSize(955, 460);
+        p.setLocation(0, 0);
+
         pmru.removeAll();
-        pmru.add(p,BorderLayout.CENTER);
+        pmru.add(p, BorderLayout.CENTER);
         pmru.revalidate();
         pmru.repaint();
     }//GEN-LAST:event_btntActionPerformed

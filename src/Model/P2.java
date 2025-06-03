@@ -6,6 +6,8 @@ package Model;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author LENOVO
@@ -35,6 +37,7 @@ public class P2 extends javax.swing.JPanel {
         btnldn = new javax.swing.JButton();
         pe = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        btnAnimaciones = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
@@ -71,10 +74,17 @@ public class P2 extends javax.swing.JPanel {
         );
         peLayout.setVerticalGroup(
             peLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 328, Short.MAX_VALUE)
+            .addGap(0, 408, Short.MAX_VALUE)
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/20231121155455_0_1.png"))); // NOI18N
+
+        btnAnimaciones.setText("Animaciones");
+        btnAnimaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnimacionesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,22 +94,22 @@ public class P2 extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(248, 248, 248)
-                                .addComponent(btnmru)
-                                .addGap(93, 93, 93)
-                                .addComponent(btnmrua))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)))
-                        .addGap(75, 75, 75)
-                        .addComponent(btnldn))
+                        .addComponent(jLabel2)
+                        .addGap(182, 182, 182)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(pe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(pe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(btnmru)
+                        .addGap(93, 93, 93)
+                        .addComponent(btnmrua)
+                        .addGap(75, 75, 75)
+                        .addComponent(btnldn)
+                        .addGap(74, 74, 74)
+                        .addComponent(btnAnimaciones)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,13 +118,14 @@ public class P2 extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnldn)
                     .addComponent(btnmrua)
-                    .addComponent(btnmru))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnmru)
+                    .addComponent(btnAnimaciones))
+                .addGap(18, 18, 18)
+                .addComponent(pe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -132,39 +143,49 @@ public class P2 extends javax.swing.JPanel {
 
     private void btnmruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmruActionPerformed
         Mru p = new Mru();
-        p.setSize(955,460);
-        p.setLocation(0,0);
-        
+        p.setSize(955, 460);
+        p.setLocation(0, 0);
+
         pe.removeAll();
-        pe.add(p,BorderLayout.CENTER);
+        pe.add(p, BorderLayout.CENTER);
         pe.revalidate();
         pe.repaint();
     }//GEN-LAST:event_btnmruActionPerformed
 
     private void btnmruaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmruaActionPerformed
         Mrua p = new Mrua();
-        p.setSize(955,460);
-        p.setLocation(0,0);
-        
+        p.setSize(955, 460);
+        p.setLocation(0, 0);
+
         pe.removeAll();
-        pe.add(p,BorderLayout.CENTER);
+        pe.add(p, BorderLayout.CENTER);
         pe.revalidate();
         pe.repaint();
     }//GEN-LAST:event_btnmruaActionPerformed
 
     private void btnldnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnldnActionPerformed
         LeyesDeNewton p = new LeyesDeNewton();
-        p.setSize(955,460);
-        p.setLocation(0,0);
-        
+        p.setSize(955, 460);
+        p.setLocation(0, 0);
+
         pe.removeAll();
-        pe.add(p,BorderLayout.CENTER);
+        pe.add(p, BorderLayout.CENTER);
         pe.revalidate();
         pe.repaint();
     }//GEN-LAST:event_btnldnActionPerformed
 
+    private void btnAnimacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnimacionesActionPerformed
+        AnimacionesPanel animacionesPanel = new AnimacionesPanel();
+        pe.removeAll();
+        pe.setLayout(new BorderLayout());
+        pe.add(animacionesPanel, BorderLayout.CENTER);
+        pe.revalidate();
+        pe.repaint();
+    }//GEN-LAST:event_btnAnimacionesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnimaciones;
     private javax.swing.JButton btnldn;
     private javax.swing.JButton btnmru;
     private javax.swing.JButton btnmrua;
